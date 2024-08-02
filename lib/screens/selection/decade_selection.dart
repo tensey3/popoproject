@@ -7,7 +7,8 @@ class DecadeSelection extends StatelessWidget {
   final ValueChanged<RangeValues> onRangeChanged;
   final VoidCallback onAddRange;
 
-  const DecadeSelection({super.key, 
+  const DecadeSelection({
+    super.key,
     required this.isVisible,
     required this.selectedDecadesRanges,
     required this.onToggleVisibility,
@@ -44,7 +45,10 @@ class DecadeSelection extends StatelessWidget {
                         '${range.end.round()}年',
                       ),
                       onChanged: (values) {
-                        onRangeChanged(values);
+                        if (values.start < values.end) {
+                          selectedDecadesRanges[index] = values;
+                          onRangeChanged(values);
+                        }
                       },
                     ),
                     Text(

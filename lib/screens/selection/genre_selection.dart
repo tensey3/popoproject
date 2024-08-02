@@ -6,7 +6,8 @@ class GenreSelection extends StatelessWidget {
   final bool isVisible;
   final VoidCallback onToggleVisibility;
 
-  const GenreSelection({super.key, 
+  const GenreSelection({
+    super.key,
     required this.isVisible,
     required this.onToggleVisibility,
   });

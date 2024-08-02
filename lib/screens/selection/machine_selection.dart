@@ -10,7 +10,8 @@ class MachineSelection extends StatelessWidget {
   final VoidCallback onJoySoundToggleVisibility;
   final ValueChanged<String> onMachineSelected;
 
-  const MachineSelection({super.key, 
+  const MachineSelection({
+    super.key,
     required this.isVisible,
     required this.isDamVisible,
     required this.isJoySoundVisible,
@@ -115,7 +116,9 @@ class MachineSelection extends StatelessWidget {
           leading: Checkbox(
             value: isSelected,
             onChanged: (bool? value) {
-              onMachineSelected(value == true ? machine : '');
+              if (value == true) {
+                onMachineSelected(machine);
+              }
             },
           ),
           selected: isSelected,

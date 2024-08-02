@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../providers/genre_provider.dart';
 import 'genre_selection.dart';
 import 'machine_selection.dart';
 import 'decade_selection.dart';
@@ -9,24 +7,26 @@ class SelectionScreen extends StatefulWidget {
   const SelectionScreen({super.key});
 
   @override
-  _SelectionScreenState createState() => _SelectionScreenState();
+  SelectionScreenState createState() => SelectionScreenState();
 }
 
-class _SelectionScreenState extends State<SelectionScreen> {
+class SelectionScreenState extends State<SelectionScreen> {
   bool _isGenreGridVisible = false;
   bool _isMachineListVisible = false;
   bool _isDamListVisible = false;
   bool _isJoySoundListVisible = false;
   bool _isDecadesListVisible = false;
   String _selectedMachine = '';
-  final List<RangeValues> _selectedDecadesRanges = [const RangeValues(1940, 2024)];
+  final List<RangeValues> _selectedDecadesRanges = [
+    const RangeValues(1940, 2024)
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final genreProvider = Provider.of<GenreProvider>(context);
-    final List<String> selectedGenres = genreProvider.selectedGenres;
-
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('選択画面'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -82,7 +82,8 @@ class _SelectionScreenState extends State<SelectionScreen> {
                 },
                 onRangeChanged: (values) {
                   setState(() {
-                    final index = _selectedDecadesRanges.indexWhere((range) => range == values);
+                    final index = _selectedDecadesRanges
+                        .indexWhere((range) => range == values);
                     if (index != -1) {
                       _selectedDecadesRanges[index] = values;
                     }
